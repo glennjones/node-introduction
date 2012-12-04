@@ -22,8 +22,8 @@
 	
 		<div id="presentation">
 			<div class="slide">
-				<h1 id="intro">An Introduction</h1>
-				<h1><img id="logo" src="node-logo.png"/></h1>
+				<h1 id="intro">An introduction to</h1>
+				<h1><img id="logo" src="assets/node-logo.png"/></h1>
 			</div>
 			<div class="slide">
 				<h1 class="centered">node.js is a <strong>non-blocking event driven</strong> javascript server</h1>
@@ -73,7 +73,7 @@ $ node app.js
 			<div id="npm" class="slide"></div>
 
 			<div class="slide">
-				<h1>There are two way of installing of your modules...</h1>
+				<h1>There are two ways of installing your modules...</h1>
 
 <pre class="prettyprint" lang-javascript>
 $ npm install moments
@@ -166,7 +166,7 @@ exports.fileLastModified = fileLastModified;
 
 
 			<div class="slide">
-				<h1>The heven and hell of callbacks</h1>
+				<h1>The heaven and hell of callbacks</h1>
 <pre class="prettyprint" lang-javascript>				
 object.someMethod(aProp, function (err, data) {
     if(err){
@@ -176,12 +176,12 @@ object.someMethod(aProp, function (err, data) {
     }
 });
 </pre>
-				<p>This is one of the most common code pattern used in node.js code</p>
+				<p>This is one of the most common code patterns used in node.js code</p>
 			</div>
 
 
 			<div class="slide">
-				<h1>The heven and hell of callbacks</h1>
+				<h1>The heaven and hell of callbacks</h1>
 <pre class="prettyprint" lang-javascript>				
 object.someMethod(aProp, function (err, data1) {
     if(err){
@@ -197,13 +197,13 @@ object.someMethod(aProp, function (err, data1) {
     }
 });
 </pre>
-				<p>This is one of the most common code pattern used in node.js code</p>
+				<p>This is one of the most common code patterns used in node.js code</p>
 			</div>
 
 
 			<div class="slide">
 				<h1>Promises/A</h1>
-<p>A promise is function that return a object supporting .then:</p>
+<p>A promise is a function that returns an object supporting .then()</p>
 
 <pre class="prettyprint" lang-javascript>				
 .then(fulfilledHandler, errorHandler, progressHandler)
@@ -238,7 +238,7 @@ http.createServer(function (req, res) {
 
 
 			<div class="slide">
-				<h1 class="centered three-line">if you want to build a traditional web app with node consider using <a href="http://expressjs.com/">express.js</a> and <a href="http://handlebarsjs.com/">handlebar.js</a></h1>
+				<h1 class="centered three-line">If you want to build a traditional web app with node consider using <a href="http://expressjs.com/">express.js</a> and <a href="http://handlebarsjs.com/">handlebar.js</a>.</h1>
 				<p class="demo-marker">demo06</p>
 			</div>
 
@@ -254,7 +254,7 @@ io.sockets.on('connection', function (socket) {
   });
 });
 </pre>
-				<p>Sockets have a small package size and can be use to broadcast</p>
+				<p>Sockets have a small package size and can be used to broadcast</p>
 				<p class="demo-marker">demo07</p>
 			</div>
 
@@ -272,14 +272,14 @@ http.createServer(function (req, res) {
 
 console.log('Server running at http://127.0.0.1:8888/');
 </pre>
-				<p>Streams mean you don't need to use memory for large object as they are piped directly through different operations</p>
+				<p>Streams mean you don't need to use memory for large objects as they are piped directly through different operations</p>
 				<p class="demo-marker">demo08</p>
 			</div>
 
 
 			<div class="slide">
-				<h1 class="centered three-line">presented to <a href="http://madgex.com">Madgex</a> on the
-					5 Decemeber 2012 in Brighton. The content and code are open source under MIT lience. <a href="http://glennJones.net">Glenn Jones</a></h1>
+				<h1 class="centered three-line">Presented to <a href="http://madgex.com">Madgex</a> on the
+					5 Decemeber 2012 in Brighton. The content and code are open sourced under MIT licence. <a href="http://glennJones.net">Glenn Jones</a>.</h1>
 			</div>
 
 
