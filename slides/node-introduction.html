@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=1200" />
+		<title>Introduction node.js</title>
+
+		<link href="assets/fathom.sample.css" rel="stylesheet" type="text/css" />
+		<link href="assets/prettify.css" rel="stylesheet" type="text/css" />
+
+		<script src="assets/jquery.min.js" type="text/javascript"></script>
+		<script src="assets/fathom.js" type="text/javascript"></script>
+		<script src="assets/prettify.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#presentation").fathom();
+			prettyPrint();
+		});
+		</script>
+	</head>
+	<body>
+	
+		<div id="presentation">
+			<div class="slide">
+				<h1 id="intro">An Introduction</h1>
+				<h1><img id="logo" src="node-logo.png"/></h1>
+			</div>
+			<div class="slide">
+				<h1 class="centered">node.js is a <strong>non-blocking event driven</strong> javascript server</h1>
+			</div>
+			<div class="slide">
+				<h1>Your first node.js app</h1>
+<pre class="prettyprint" lang-javascript>
+var http = require('http');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('To quarters four hallo\n');
+}).listen(8888, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:8888/');
+</pre>
+
+<pre class="prettyprint" lang-javascript>
+$ node app.js
+</pre>
+<p class="demo-marker">demo01</p>
+			</div>
+			<div class="slide">
+				<h1>Everything with node is modular...</h1>
+
+<pre class="prettyprint" lang-javascript>
+var http = require('http');
+var url = require('url');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  var myUrl = 'http://glennjones.net/2011/03/to-quarters-four-hallo/',
+  	  host  =  url.parse(myUrl).host;
+
+  res.end('The blog post live on the '+  host +'\n');
+}).listen(8888, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:8888/');
+</pre>
+
+<pre class="prettyprint" lang-javascript>
+$ node app.js
+</pre>
+<p class="demo-marker">demo02</p>
+			</div>
+
+			<div id="npm" class="slide"></div>
+
+			<div class="slide">
+				<h1>There are two way of installing of your modules...</h1>
+
+<pre class="prettyprint" lang-javascript>
+$ npm install moments
+</pre>
+
+<pre class="prettyprint" lang-javascript>
+{
+  "author": "Glenn Jones",
+  "name": "demo03",
+  "description": "An small demo of how to install modules using npm",
+  "version": "0.0.1",
+  "dependencies": {
+    "moment": "1.7.x"
+  }
+}
+</pre>
+
+
+			</div>
+
+			<div class="slide">
+				<h1>Using the external "moment" module</h1>
+<pre class="prettyprint" lang-javascript>				
+var     http 	= require('http'),
+	fs      = require('fs'),
+	path 	= require('path'),
+	moment 	= require('moment');
+
+http.createServer(function (req, res) {
+  	res.writeHead(200, {'Content-Type': 'text/plain'});
+  	var filePath = path.resolve(__dirname, 'package.json');
+	fs.stat(filePath, function(err, stat){
+		var updated = moment(stat.mtime)
+		res.end('Last changed: ' + updated.fromNow());
+	})
+}).listen(8888, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:8888/');
+</pre>
+<p class="demo-marker">demo03</p>
+
+			</div>
+
+
+			<div class="slide">
+				<h1>Breaking your app into files - app.js</h1>
+<pre class="prettyprint" lang-javascript>				
+var http     = require('http'),
+    filedate = require('./lib/filedate');
+
+http.createServer(function (req, res) {
+  	res.writeHead(200, {'Content-Type': 'text/plain'});
+  	filedate.fileLastModified('package.json', function(err, date){
+  		if(err){
+  			res.end('Error: ' + err)
+  		}else{
+			res.end('Last changed: ' + date)
+		}
+  	})
+}).listen(8888, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:8888/');
+</pre>
+				<p><strong>Note: The required link to './lib/filedate'</strong></p>
+			</div>
+
+
+			<div class="slide">
+				<h1>Breaking your app into files - filedate.js</h1>
+<pre class="prettyprint" lang-javascript>var     fs    = require('fs'),
+	path 	= require('path'),
+	moment 	= require('moment');
+
+function fileLastModified(filename, callback){
+	var filePath = path.resolve(__dirname, '../' + filename);
+	fs.stat(filePath, function(err, stat){
+		if(err){
+			callback(err, null)
+		}else{
+			callback(null, moment(stat.mtime).fromNow())
+		}
+	})
+}  
+exports.fileLastModified = fileLastModified;
+</pre>
+				<p><strong>Note: The 'exports.fileLastModified = fileLastModified' line</strong></p>
+				<p class="demo-marker">demo04</p>
+			</div>
+
+
+			<div id="inspector" class="slide"></div>
+
+
+			<div class="slide">
+				<h1>The heven and hell of callbacks</h1>
+<pre class="prettyprint" lang-javascript>				
+object.someMethod(aProp, function (err, data) {
+    if(err){
+       // do something with error
+    }else{
+       // do something with data
+    }
+});
+</pre>
+				<p>This is one of the most common code pattern used in node.js code</p>
+			</div>
+
+
+			<div class="slide">
+				<h1>The heven and hell of callbacks</h1>
+<pre class="prettyprint" lang-javascript>				
+object.someMethod(aProp, function (err, data1) {
+    if(err){
+       // do something with error
+    }else{
+        object.someOtherMethod(data1, function (err, data2) {
+	        if(err){
+	            // do something with error
+	        }else{
+	            // do something with data2
+	        }
+        });
+    }
+});
+</pre>
+				<p>This is one of the most common code pattern used in node.js code</p>
+			</div>
+
+
+			<div class="slide">
+				<h1>Promises/A</h1>
+<p>A promise is function that return a object supporting .then:</p>
+
+<pre class="prettyprint" lang-javascript>				
+.then(fulfilledHandler, errorHandler, progressHandler)
+</pre>
+				<p>A good read is <a href="https://gist.github.com/3889970">https://gist.github.com/3889970</a></p>
+			</div>
+
+
+			<div class="slide">
+				<h1>Promises/A</h1>
+<pre class="prettyprint" lang-javascript>var http   = require('http'),
+    wait   = require('./lib/wait.js');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+
+  wait.for1Seconds('My property')
+    .then(wait.for2Seconds)
+    .then(
+        function (data) {
+            res.end(data)
+        },
+        function (error) {
+            res.end('{"Error": "' + error + '"}');
+        }
+    )
+
+}).listen(8888, '127.0.0.1');
+</pre>
+<p class="demo-marker">demo05</p>
+			</div>
+
+
+			<div class="slide">
+				<h1 class="centered three-line">if you want to build a traditional web app with node consider using <a href="http://expressjs.com/">express.js</a> and <a href="http://handlebarsjs.com/">handlebar.js</a></h1>
+				<p class="demo-marker">demo06</p>
+			</div>
+
+
+			<div class="slide">
+				<h1>Sockets using socket.io</h1>
+<pre class="prettyprint" lang-javascript>	
+var io = sio.listen(server);
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'To quarters four hallo' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+</pre>
+				<p>Sockets have a small package size and can be use to broadcast</p>
+				<p class="demo-marker">demo07</p>
+			</div>
+
+
+
+			<div class="slide">
+				<h1>Streams</h1>
+<pre class="prettyprint" lang-javascript>	
+var http    = require('http'),
+    request = require('request');
+
+http.createServer(function (req, res) {
+   request('http://farm3.staticflickr.com/...5e24_b.jpg').pipe(res)
+}).listen(8888, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:8888/');
+</pre>
+				<p>Streams mean you don't need to use memory for large object as they are piped directly through different operations</p>
+				<p class="demo-marker">demo08</p>
+			</div>
+
+
+			<div class="slide">
+				<h1 class="centered three-line">presented to <a href="http://madgex.com">Madgex</a> on the
+					5 Decemeber 2012 in Brighton. The content and code are open source under MIT lience. <a href="http://glennJones.net">Glenn Jones</a></h1>
+			</div>
+
+
+		</div>
+	
+	</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "author": "Glenn Jones",
+  "name": "demo03",
+  "description": "An small demo of how to install modules using npm",
+  "version": "0.0.1",
+  "dependencies": {
+    "moment": "1.7.x"
+  }
+}

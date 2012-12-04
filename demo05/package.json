@@ -1,0 +1,9 @@
+{
+  "author": "Glenn Jones",
+  "name": "demo05",
+  "description": "An small demo of how to install modules using npm",
+  "version": "0.0.1",
+  "dependencies": {
+    "elsewhere": "https://github.com/cujojs/when/tarball/master"
+  }
+}

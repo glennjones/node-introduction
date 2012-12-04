@@ -1,0 +1,10 @@
+{
+  "author": "Glenn Jones",
+  "name": "demo06",
+  "description": "Shows how express.js and handlebar.js work together",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.0.x",
+    "handlebars": "1.0.x"
+  }
+}

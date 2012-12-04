@@ -1,0 +1,9 @@
+{
+  "author": "Glenn Jones",
+  "name": "demo08",
+  "description": "Steaming a image into node and piping straight out again",
+  "version": "0.0.1",
+  "dependencies": {
+    "request": "2.12.x"
+  }
+}
