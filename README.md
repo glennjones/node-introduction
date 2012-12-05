@@ -2,7 +2,7 @@
 
 The slides are built in HTML and can be found: 
 
-    http://glennjones.github.com/node-introduction/
+[http://glennjones.github.com/node-introduction/](http://glennjones.github.com/node-introduction/)
 
 The demos/code walk throughs
 
