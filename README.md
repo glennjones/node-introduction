@@ -1,4 +1,10 @@
-# Node introduction talk with demos/code walk throughs
+# Node introduction talk
+
+The slides are built in HTML and can be found: 
+
+    http://glennjones.github.com/node-introduction/
+
+The demos/code walk throughs
 
 1. Simple node.js app
 2. Using other node.js modules
@@ -9,3 +15,11 @@
 7. Socket.io
 8. Streams
 
+Copy this project to your local drive. Make sure you have node.js installed. Then in each of the demo directory use the command line to exec the following command.
+
+    % node app.js
+    
+
+Glenn Jones - [http//:glennjones.net/](http//:glennjones.net/)
+
+Presented to Madgex on the 5 Decemeber 2012 in Brighton. The content and code are open sourced under MIT licence. 
